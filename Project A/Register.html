@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Register</title>
+  <link rel="stylesheet" href="Register.css">
+</head>
+<body>
+  <img class="bg-img" src="./images/valorant-305kescxw5dpup7y.jpg" alt="" aria-hidden="true">
+   <div class="box">
+    <form action="/submit_form" method="get">
+      <h2>Register</h2>
+      <label for="Username">Username:</label>
+      <input type="text" id="Username" pattern="[a-zA-Z0-9]+" name="Username" required>
+      <label for="Email">Email:</label>
+      <input type="email" id="Email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" placeholder="example@domain.com" name="Email" required>
+      <label for="Password">Password:</label>
+      <div class="input-with-status">
+        <input type="password" id="Password" name="Password" required
+              aria-describedby="pwHelp" autocomplete="new-password">
+        <span class="pw-status invalid" id="pwStatus" aria-hidden="true">✕</span>
+      </div>
+      <div id="pwHelp" class="sr-only" aria-live="polite">
+        Password must be 8 to 18 characters, include at least one uppercase letter and one special character.
+      </div>
+      <label for="ConfirmPassword">Confirm Password:</label>
+      <div class="input-with-status">
+        <input type="password" id="ConfirmPassword" name="ConfirmPassword" required autocomplete="new-password">
+        <span class="pw-status invalid" id="confirmStatus" aria-hidden="true">✕</span>
+      </div>
+
+      <button type="submit" id="registerBtn" disabled>Complete register</button>
+      <div class="form-links">
+        <a href="index.html#signin" class="signin">Already have an account? Sign in</a>
+      </div>
+    </form>
+  </div>
+
+  <script src="site.js" defer></script>
+
+  <script>
+    // existing password validation script (keeps current behavior)
+    document.addEventListener('DOMContentLoaded', function () {
+      const form = document.querySelector('form');
+      const pwd = document.getElementById('Password');
+      const confirm = document.getElementById('ConfirmPassword');
+
+      const strongPwRegex = /^(?=.{8,18}$)(?=.*[A-Z])(?=.*[^A-Za-z0-9]).*$/;
+
+      function validatePasswords() {
+        const value = pwd.value;
+        pwd.setCustomValidity('');
+        confirm.setCustomValidity('');
+
+        if (!strongPwRegex.test(value)) {
+          pwd.setCustomValidity('Password must be 8 to 18 chars, include at least one uppercase letter and one special character.');
+        } else if (confirm.value && value !== confirm.value) {
+          confirm.setCustomValidity('Passwords do not match.');
+        }
+      }
+
+      pwd.addEventListener('input', validatePasswords);
+      confirm.addEventListener('input', validatePasswords);
+
+      form.addEventListener('submit', function (e) {
+        validatePasswords();
+        if (!form.checkValidity()) {
+          e.preventDefault();
+          const firstInvalid = form.querySelector(':invalid');
+          if (firstInvalid) firstInvalid.focus();
+        }
+      });
+    });
+// Register page password validation + username capture on submit
+  document.addEventListener('DOMContentLoaded', function () {
+    const form = document.querySelector('form');
+    const pwd = document.getElementById('Password');
+    const confirm = document.getElementById('ConfirmPassword');
+    const usernameInput = document.getElementById('Username');
+
+    const strongPwRegex = /^(?=.{8,18}$)(?=.*[A-Z])(?=.*[^A-Za-z0-9]).*$/;
+
+    function validatePasswords() {
+      const value = pwd.value;
+      pwd.setCustomValidity('');
+      confirm.setCustomValidity('');
+
+      if (!strongPwRegex.test(value)) {
+        pwd.setCustomValidity('Password must be 8 to 18 chars, include at least one uppercase letter and one special character.');
+      } else if (confirm.value && value !== confirm.value) {
+        confirm.setCustomValidity('Passwords do not match.');
+      }
+    }
+
+    pwd.addEventListener('input', validatePasswords);
+    confirm.addEventListener('input', validatePasswords);
+
+    form.addEventListener('submit', function (e) {
+      validatePasswords();
+      if (!form.checkValidity()) {
+        e.preventDefault();
+        const firstInvalid = form.querySelector(':invalid');
+        if (firstInvalid) firstInvalid.focus();
+        return;
+      }
+      
+      // Capture username and store in localStorage
+      const username = usernameInput ? usernameInput.value.trim() : 'User';
+      localStorage.setItem('currentUser', username);
+      
+      // Redirect to index.html (form will submit normally, then we redirect)
+      e.preventDefault();
+      setTimeout(() => {
+        window.location.href = 'index.html';
+      }, 300);
+    });
+
+    // Live validation for password indicators (green check / red X)
+    (function () {
+      const pwStatus = document.getElementById('pwStatus');
+      const confirmStatus = document.getElementById('confirmStatus');
+      const registerBtn = document.getElementById('registerBtn');
+
+      if (!pwStatus || !confirmStatus || !registerBtn) return;
+
+      function updatePwStatus() {
+        const v = pwd.value;
+        const ok = strongPwRegex.test(v);
+        if (ok) {
+          pwStatus.classList.remove('invalid'); pwStatus.classList.add('valid'); pwStatus.textContent = '✓';
+        } else {
+          pwStatus.classList.remove('valid'); pwStatus.classList.add('invalid'); pwStatus.textContent = '✕';
+        }
+      }
+
+      function updateConfirmStatus() {
+        const match = confirm.value !== '' && pwd.value === confirm.value;
+        if (match) {
+          confirmStatus.classList.remove('invalid'); confirmStatus.classList.add('valid'); confirmStatus.textContent = '✓';
+        } else {
+          confirmStatus.classList.remove('valid'); confirmStatus.classList.add('invalid'); confirmStatus.textContent = '✕';
+        }
+      }
+
+      function updateRegisterButton() {
+        const allGood = strongPwRegex.test(pwd.value) && pwd.value === confirm.value && pwd.value.length > 0;
+        registerBtn.disabled = !allGood;
+      }
+
+      pwd.addEventListener('input', function () {
+        updatePwStatus();
+        updateConfirmStatus();
+        updateRegisterButton();
+      });
+      confirm.addEventListener('input', function () {
+        updateConfirmStatus();
+        updateRegisterButton();
+      });
+
+      updatePwStatus();
+      updateConfirmStatus();
+      updateRegisterButton();
+    })();
+  });
+</script>
+</body>
+</html>

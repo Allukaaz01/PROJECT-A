@@ -1,0 +1,317 @@
+/* Reset / base */
+* { box-sizing: border-box; }
+html, body { height: 100%; margin: 0; }
+body {
+  font-family: 'Segoe UI', Tahoma, Verdana, sans-serif;
+  font-size: 16px;
+  color: #fff;
+  background-color: #000;
+  overflow-x: hidden;
+}
+
+/* Fullscreen background image using an <img> with object-fit for best coverage */
+.bg-img {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+  filter: saturate(0.98) contrast(1.02);
+}
+
+/* NAVBAR (fixed, always visible at top) */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 18px;
+  z-index: 50;
+  background: linear-gradient(180deg, rgba(0,0,0,0.35), rgba(0,0,0,0.10));
+  backdrop-filter: blur(4px);
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+  gap: 20px;
+}
+
+.navbar .brand {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 1.1rem;
+  white-space: nowrap;
+}
+
+/* Center nav menu */
+.nav-center {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.nav-menu {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 24px;
+  align-items: center;
+}
+
+.nav-menu a {
+  color: rgba(255,255,255,0.95);
+  text-decoration: none;
+  font-size: 0.95rem;
+  transition: color .2s ease, transform .15s ease;
+}
+
+.nav-menu a:hover {
+  color: #4105d7;
+  transform: translateY(-2px);
+}
+
+/* User display area */
+.nav-user {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  white-space: nowrap;
+}
+
+/* Transparent top-right sign in button (small panel look) */
+.nav-signin {
+  background: rgba(0,0,0,0.35);
+  color: #fff;
+  border: 1px solid rgba(255,255,255,0.08);
+  padding: 8px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.95rem;
+  transition: transform .18s ease, background .18s ease;
+}
+.nav-signin:hover { 
+  transform: translateY(-2px); 
+  background: rgba(0,0,0,0.45); 
+}
+
+.user-name {
+  color: #fff;
+  font-size: 0.95rem;
+  padding: 8px 12px;
+  border-radius: 8px;
+  background: rgba(65, 5, 215, 0.15);
+  border: 1px solid rgba(65, 5, 215, 0.3);
+}
+
+/* Responsive navbar */
+@media (max-width: 900px) {
+  .nav-menu { gap: 16px; }
+  .nav-menu a { font-size: 0.9rem; }
+}
+
+@media (max-width: 768px) {
+  .navbar { height: 56px; padding: 0 12px; gap: 12px; }
+  .nav-center { display: none; } /* Hide menu on small screens, or make it a burger menu */
+  .navbar .brand { font-size: 1rem; }
+  .nav-signin { padding: 6px 10px; font-size: 0.9rem; }
+}
+/* Page content */
+.content {
+  padding-top: 96px; /* room for fixed navbar */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 28px;
+  min-height: calc(100vh - 160px);
+}
+
+/* Hero */
+.hero {
+  margin-top: 18px;
+  text-align: center;
+  color: #fff;
+  padding: 28px;
+  text-shadow: 0 3px 12px rgba(0,0,0,0.6);
+}
+.hero h1 { margin: 0 0 8px 0; font-size: clamp(22px, 3.4vw, 36px); }
+.hero p { margin: 0; opacity: 0.95; }
+
+/* Cards row - 2 column layout: left stack, right single */
+.cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+  width: min(900px, 94%);
+  padding: 0 12px 40px;
+  align-items: stretch;
+}
+
+.card-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.card {
+  background: rgba(0,0,0,0.45);
+  border-radius: 10px;
+  padding: 12px;
+  text-align: center;
+  box-shadow: 0 8px 22px rgba(0,0,0,0.45);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  transition: 0.4s ease;
+}
+
+.card:hover {
+  transform: scale(1.05) translateY(-4px);
+  box-shadow: 0 14px 32px rgba(65, 5, 215, 0.3);
+}
+
+.card img {
+  width: 100%;
+  height: auto;
+  flex-grow: 1;
+  object-fit: cover;
+  border-radius: 6px;
+  display: block;
+  transition: 0.4s ease;
+}
+
+.card:hover img {
+  filter: brightness(1.08);
+}
+
+.card p { margin: 8px 0 0 0; font-weight: 700; color: #fff; }
+
+/* Responsive: stack on small screens */
+@media (max-width: 700px) {
+  .cards {
+    grid-template-columns: 1fr;
+  }
+  .card-stack {
+    flex-direction: row;
+  }
+}
+/* Transparent modal overlay and box (same look as forms) */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.55);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+  padding: 20px;
+}
+.modal-overlay[aria-hidden="false"], .modal-overlay.show {
+  display: flex;
+}
+.modal-box.box {
+  width: 100%;
+  max-width: 420px;
+  background-color: rgba(0, 0, 0, 0.55);
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.7);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  position: relative;
+}
+
+/* modal close button (top-right) */
+.modal-close {
+  position: absolute;
+  right: 10px;
+  top: 8px;
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+/* form elements (same as register/sign in look) */
+.box h2 { color: #fff; margin: 6px 0 8px; text-align: center; }
+.box label { color: #fff; font-size: 14px; margin-top: 6px; }
+.box input[type="text"],
+.box input[type="password"],
+.box input[type="email"] {
+  width: 100%;
+  padding: 10px;
+  margin: 6px 0;
+  border: none;
+  border-radius: 6px;
+  font-size: 15px;
+}
+
+/* primary button (matches sign in color) */
+button.primary {
+  display: block;
+  width: 50%;
+  margin: 12px auto 0 auto;
+  background-color: #4105d7;
+  color: #fff;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 15px;
+}
+button.primary:hover { filter: brightness(1.03); transform: translateY(-1px); }
+
+/* links area */
+.form-links {
+  width: 100%;
+  text-align: center;
+  margin-top: 8px;
+  font-size: 14px;
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.form-links a { color: #e9e9ff; text-decoration: none; opacity: 0.95; }
+.form-links a:hover { text-decoration: underline; }
+
+/* Footer */
+.footer { text-align: center; padding: 28px 12px; background: rgba(0,0,0,0.5); margin-top: 20px; }
+
+/* Toast style used by site.js */
+.toast {
+  position: fixed;
+  left: 50%;
+  bottom: 24px;
+  transform: translateX(-50%) translateY(8px);
+  background: rgba(0,0,0,0.85);
+  color: #fff;
+  padding: 10px 14px;
+  border-radius: 8px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.35);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .22s ease, transform .22s ease;
+  z-index: 2000;
+}
+.toast.show { opacity: 1; transform: translateX(-50%) translateY(0); pointer-events: auto; }
+
+/* Responsive tweaks */
+@media (max-width: 780px) {
+  .navbar { height: 56px; padding: 0 14px; }
+  .nav-signin { padding: 6px 10px; font-size: 0.9rem; }
+  .cards { grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); }
+  .modal-box.box { max-width: 360px; padding: 16px; }
+}
+
+/* User display in navbar */
+#userDisplay {
+  display: flex;
+  align-items: center;
+  gap: 0;
+}

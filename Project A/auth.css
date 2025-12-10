@@ -1,0 +1,127 @@
+/* auth.css — shared styling for forgot/reset/register pages */
+html, body {
+  height: 100%;
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Verdana, sans-serif;
+  background-color: #000;
+  color: #fff;
+}
+
+/* Background image support (if page includes .bg-img) */
+.bg-img {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+  filter: saturate(0.98) contrast(1.02);
+}
+
+/* Panel / box */
+.box {
+  background-color: rgba(0, 0, 0, 0.55);
+  padding: 18px;
+  border-radius: 10px;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.6);
+  width: 100%;
+  max-width: 420px;
+  margin: 0 auto;
+  color: #fff;
+}
+
+/* Headings / labels */
+h2 { margin: 0 0 8px 0; font-size: 20px; color: #fff; text-align: left; }
+label { display:block; color: #fff; margin-top: 10px; font-size: 14px; }
+
+/* Inputs */
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  margin-top: 6px;
+  box-sizing: border-box;
+  border: none;
+  border-radius: 6px;
+  background: rgba(255,255,255,0.03);
+  color: #fff;
+  font-size: 15px;
+  outline: none;
+}
+
+/* Input-with-status wrapper */
+.input-with-status { position: relative; }
+.input-with-status input { padding-right: 46px; }
+
+/* Password status badge */
+.pw-status {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  color: #fff;
+  pointer-events: none;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.35);
+}
+.pw-status.invalid { background: #c62828; }
+.pw-status.valid { background: #2e7d32; transform: translateY(-50%) scale(1.03); }
+
+/* primary button like register */
+button.primary {
+  display: block;
+  width: 100%;
+  background-color: #4105d7;
+  color: #fff;
+  padding: 12px;
+  margin-top: 14px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 15px;
+}
+button.primary:disabled { opacity: 0.7; cursor: not-allowed; }
+
+/* small helper and links */
+.form-links { margin-top: 10px; text-align: center; }
+.form-links a { color: #e9e9ff; text-decoration: none; }
+.form-links a:hover { text-decoration: underline; }
+
+/* visually hidden (screen reader only) */
+.sr-only {
+  position: absolute !important;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px; overflow: hidden;
+  clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+}
+
+/* Toast style used by site.js */
+.toast {
+  position: fixed;
+  left: 50%;
+  bottom: 24px;
+  transform: translateX(-50%) translateY(8px);
+  background: rgba(0,0,0,0.85);
+  color: #fff;
+  padding: 10px 14px;
+  border-radius: 8px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.35);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .22s ease, transform .22s ease;
+  z-index: 2000;
+}
+.toast.show { opacity: 1; transform: translateX(-50%) translateY(0); pointer-events: auto; }
+
+/* small responsiveness */
+@media (max-width: 520px) {
+  .box { padding: 14px; max-width: 94%; }
+  button.primary { padding: 10px; }
+}

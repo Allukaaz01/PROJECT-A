@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Project L</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Fullscreen background image (keeps coverage on all aspect ratios) -->
+  <img class="bg-img" src="./images/valorant-305kescxw5dpup7y.jpg" alt="" aria-hidden="true">
+
+  <!-- NAVBAR (fixed at top) -->
+<nav class="navbar">
+  <div class="nav-left">
+    <a class="brand" href="index.html">Project L</a>
+  </div>
+  <div class="nav-center">
+    <ul class="nav-menu">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="https://op.gg/valorant/skins?weapon=Melee" target="_blank">Skins</a></li>
+      <li><a href="https://playvalorant.com/en-us/agents/" target="_blank">Agents</a></li>
+      <li><a href="https://valorantesports.com/en-GB/gpr/2025/current" target="_blank">Teams</a></li>
+      <li><a href="https://discord.gg/hbvHAHh4zY" target="_blank">Community</a></li>
+      <li><a href="https://www.vlr.gg/matches" target="_blank">Esports</a></li>
+    </ul>
+  </div>
+  <div class="nav-right">
+    <div id="userDisplay" class="nav-user">
+      <button id="signInBtn" class="nav-signin">Sign in</button>
+    </div>
+  </div>
+</nav>
+
+  <!-- MAIN CONTENT -->
+  <main class="content">
+    <section class="hero">
+      <h1>Welcome to Project A</h1>
+      <p>Skins, tournaments, teams, community — fast access.</p>
+    </section>
+
+    <section class="cards">
+    <div class="card-stack">
+      <div class="card">
+        <img src="./images/valorant-reaver-skin-hd-wallpaper-uhdpaper.com-250@1@e.jpg" alt="">
+        <p>REAVER BUNDLE</p>
+      </div>
+      <div class="card">
+        <img src="./images/valorant-protocol-781-a-weapon-skin-hd-wallpaper-uhdpaper.com-586@1@g.jpg" alt="">
+        <p>PROTOCOL 781</p>
+      </div>
+    </div>
+    <div class="card">
+      <a href="https://playvalorant.com/en-us/agents/omen/" target="_blank"><img src="./images/015a083717e9687de8a741cfceddb836775b5f9f-616x822.png" alt=""></a>
+      <p>OMEN</p>
+    </div>
+    </section>
+  </main>
+
+  <footer id="about-us" class="footer">
+    <div class="container">
+      <h3>About Us</h3>
+      <p>Welcome to Project A — your destination for Valorant skins, tournaments, teams, and esports updates.</p>
+    </div>
+  </footer>
+
+  <!-- SIGN-IN MODAL (in-page popup) -->
+  <div id="signinModal" class="modal-overlay" aria-hidden="true">
+    <div class="modal-box box" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <button class="modal-close" aria-label="Close">&times;</button>
+
+      <form id="signinForm" action="/submit_form" method="get" data-redirect="">
+        <h2 id="modalTitle">Sign in</h2>
+        <label for="si-Username">Username:</label>
+        <input type="text" id="si-Username" name="Username" required>
+        <label for="si-Password">Password:</label>
+        <input type="password" id="si-Password" name="Password" required>
+        <button type="submit" class="primary">Sign in</button>
+
+        <div class="form-links">
+          <a href="forgot-password.html" class="forgot" id="openForgot" target="_blank">Forgot password?</a>
+          <a href="Register.html" class="signup">Register / Sign up</a>
+        </div>
+      </form>
+    </div>
+  </div>
+  <!-- RESET LINK / RESET FORM MODAL (parent-side) -->
+<div id="resetModal" class="modal-overlay" aria-hidden="true">
+  <div class="modal-box box" role="dialog" aria-modal="true" aria-labelledby="resetTitle">
+    <button class="modal-close" aria-label="Close">&times;</button>
+
+    <div id="resetView">
+      <h2 id="resetTitle">Password reset link received</h2>
+      <p id="resetMsg">We sent a reset link to <strong id="resetEmail"></strong> (demo).</p>
+      <p>Click below to open the reset form:</p>
+      <div style="display:flex;gap:10px;margin-top:10px;">
+        <button id="openResetForm" class="primary">Open Reset Form</button>
+        <button id="dismissReset" class="nav-signin" style="background:transparent;border:1px solid rgba(255,255,255,0.06);">Dismiss</button>
+      </div>
+    </div>
+
+    <form id="resetForm" style="display:none; margin-top:6px;">
+      <h2 style="margin-top:0">Create new password</h2>
+
+      <label for="newPassword">New Password</label>
+      <div class="input-with-status">
+        <input type="password" id="newPassword" required aria-describedby="rpHelp" autocomplete="new-password">
+        <span class="pw-status invalid" id="resetPwStatus" aria-hidden="true">✕</span>
+      </div>
+
+      <label for="confirmNew">Confirm Password</label>
+      <div class="input-with-status">
+        <input type="password" id="confirmNew" required autocomplete="new-password">
+        <span class="pw-status invalid" id="resetConfirmStatus" aria-hidden="true">✕</span>
+      </div>
+
+      <button type="submit" id="doReset" class="primary" disabled>Reset password</button>
+    </form>
+
+    <div id="resetSuccess" style="display:none; margin-top:8px; text-align:center;">
+      <h3 style="margin:8px 0 4px 0">Password changed</h3>
+      <p style="margin:0">Your password was updated successfully (demo).</p>
+      <div style="margin-top:10px"><button id="closeSuccess" class="nav-signin">Close</button></div>
+    </div>
+  </div>
+</div>
+<script src="site.js" defer></script>
+</body>
+</html>
