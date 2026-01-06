@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="style.css">
+  <title>About us</title>
+</head>
+<body>
+    <img class="bg-img" src="./images/valorant-305kescxw5dpup7y.jpg" alt="" aria-hidden="true">
+    <nav class="navbar">
+  <div class="nav-left">
+    <a class="brand" href="index.html">Valorant</a>
+  </div>
+  <div class="nav-center">
+    <ul class="nav-menu">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="https://op.gg/valorant/skins?weapon=Melee" target="_blank">Skins</a></li>
+      <li><a href="https://playvalorant.com/en-us/agents/" target="_blank">Agents</a></li>
+      <li><a href="https://valorantesports.com/en-GB/gpr/2025/current" target="_blank">Teams</a></li>
+      <li><a href="https://discord.gg/hbvHAHh4zY" target="_blank">Community</a></li>
+      <li><a href="https://www.vlr.gg/matches" target="_blank">Esports</a></li>
+      <li><a href="About.html">About us</a></li>
+    </ul>
+  </div>
+  <div class="nav-right">
+    <div id="userDisplay" class="nav-user">
+      <button id="signInBtn" class="nav-signin">Sign in</button>
+    </div>
+  </div>
+</nav>
+    <div class="about-section">
+    <h1>About us</h1>
+    <p> Valorant is a tactical shooter game developed by Riot Games. 
+      It features a unique blend of strategic gameplay and character-based abilities, 
+      making it a popular choice among competitive players.</p>
+    <ul class="list">
+      <li>Developed by Riot Games</li>
+      <li>Released in June 2020</li>
+      <li>Genre: Tactical Shooter</li>
+      <li>Available on Windows and macOS</li>
+    </ul>
+    <p>For more information, visit the <a href="https://playvalorant.com/en-us/" target="_blank">official Valorant website</a>.</p>
+    </div>
+    <footer id="about-us" class="footer">
+    <div class="container">
+      <p>Join our <a href="https://discord.gg/hbvHAHh4zY" target="_blank">community</a> to stay updated on the latest Valorant news and events.</p>
+      <p>&copy; — 2026 Valorant</p>
+    </div>
+</footer>
+<div id="signinModal" class="modal-overlay" aria-hidden="true">
+  <div class="modal-box box" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <button class="modal-close" aria-label="Close">&times;</button>
+
+    <form id="signinForm" action="/submit_form" method="get" data-redirect="">
+      <h2 id="modalTitle">Sign in</h2>
+      <label for="si-Username">Username:</label>
+      <input type="text" id="si-Username" name="Username" required>
+      <label for="si-Password">Password:</label>
+      <input type="password" id="si-Password" name="Password" required>
+      <button type="submit" class="primary">Sign in</button>
+
+      <div class="form-links">
+        <a href="forgot-password.html" class="forgot" id="openForgot" target="_blank">Forgot password?</a>
+        <a href="Register.html" class="signup">Register / Sign up</a>
+      </div>
+    </form>
+  </div>
+</div>
+<div id="resetModal" class="modal-overlay" aria-hidden="true">
+  <div class="modal-box box" role="dialog" aria-modal="true" aria-labelledby="resetTitle">
+    <button class="modal-close" aria-label="Close">&times;</button>
+
+    <div id="resetView">
+      <h2 id="resetTitle">Password reset link received</h2>
+      <p id="resetMsg">We sent a reset link to <strong id="resetEmail"></strong> (demo).</p>
+      <p>Click below to open the reset form:</p>
+      <div style="display:flex;gap:10px;margin-top:10px;">
+        <button id="openResetForm" class="primary">Open Reset Form</button>
+        <button id="dismissReset" class="nav-signin" style="background:transparent;border:1px solid rgba(255,255,255,0.06);">Dismiss</button>
+      </div>
+    </div>
+
+    <form id="resetForm" style="display:none; margin-top:6px;">
+      <h2 style="margin-top:0">Create new password</h2>
+
+      <label for="newPassword">New Password</label>
+      <div class="input-with-status">
+        <input type="password" id="newPassword" required aria-describedby="rpHelp" autocomplete="new-password">
+        <span class="pw-status invalid" id="resetPwStatus" aria-hidden="true">✕</span>
+      </div>
+
+      <label for="confirmNew">Confirm Password</label>
+      <div class="input-with-status">
+        <input type="password" id="confirmNew" required autocomplete="new-password">
+        <span class="pw-status invalid" id="resetConfirmStatus" aria-hidden="true">✕</span>
+      </div>
+
+      <button type="submit" id="doReset" class="primary" disabled>Reset password</button>
+    </form>
+
+    <div id="resetSuccess" style="display:none; margin-top:8px; text-align:center;">
+      <h3 style="margin:8px 0 4px 0">Password changed</h3>
+      <p style="margin:0">Your password was updated successfully.</p>
+      <div style="margin-top:10px"><button id="closeSuccess" class="nav-signin">Close</button></div>
+    </div>
+  </div>
+</div>
+<script src="site.js" defer></script>
+</body>
+</html>

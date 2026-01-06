@@ -1,6 +1,6 @@
 /* Reset / base */
 * { box-sizing: border-box; }
-html, body { height: 100%; margin: 0; }
+html, body { height: auto; margin: 0; }
 body {
   font-family: 'Segoe UI', Tahoma, Verdana, sans-serif;
   font-size: 16px;
@@ -8,7 +8,9 @@ body {
   background-color: #000;
   overflow-x: hidden;
 }
-
+.container a{
+  color: #bcbcf8;
+}
 /* Fullscreen background image using an <img> with object-fit for best coverage */
 .bg-img {
   position: fixed;
@@ -314,4 +316,38 @@ button.primary:hover { filter: brightness(1.03); transform: translateY(-1px); }
   display: flex;
   align-items: center;
   gap: 0;
+}
+.list {
+  list-style-type: disc;
+  padding-left: 20px;
+  margin-top: 10px;
+  text-align: left;
+  margin-left: 30px;
+}
+.about-section {
+  margin-top: 151px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 100px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  text-align: center;
+  font-size: 24px;
+  display: flex;
+  flex-direction: column;
+  color: #fff;
+  padding: 20px;
+  width: 800px;
+  background-color: rgba(0, 0, 0, 0.6);
+  border-radius: 10px;
+  box-shadow: 0 8px 22px rgba(0,0,0,0.45);
+}
+.about-section a {
+  color: #bcbcf8;
+}
+.about-section a:hover {
+  color: #9393f3;
+}
+
+footer a:hover {
+  color: #9393f3;
 }
